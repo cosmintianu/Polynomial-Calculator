@@ -61,4 +61,5 @@ public class CalculatorView extends JPanel {
     JLabel labelParam3 = new JLabel("Result: ");
     JTextField textFieldParam3 = new JTextField();
 
+    //to do polynomial processing
 }
