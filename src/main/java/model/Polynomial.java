@@ -3,6 +3,8 @@ package model;
 import java.util.Map;
 import java.util.TreeMap;
 
+import static java.lang.Math.abs;
+
 public class Polynomial {
     private Map<Integer, Integer> terms;
 
@@ -23,30 +25,39 @@ public class Polynomial {
         StringBuilder polynomialStr = new StringBuilder();
         for (Map.Entry<Integer, Integer> entry : terms.entrySet()) {
 
-            if (entry.getValue() == 1 && entry.getKey() == 0) {
-                String term = entry.getValue() + " + ";
-                polynomialStr.append(term);
-            } else if (entry.getValue() == 1 && entry.getKey() == 1) {
-                String term = "x" + " + ";
-                polynomialStr.append(term);
-            } else if (entry.getValue() == 1) {
-                String term = "x^" + entry.getKey() + " + ";
-                polynomialStr.append(term);
-            } else if (entry.getKey() == 1) {
-                String term = entry.getValue() + "x" + " + ";
-                polynomialStr.append(term);
-            } else if (entry.getKey() == 0) {
-                String term = entry.getValue() + " + ";
+            if (entry.getValue() < 0) {
+                String term = " - ";
+                terms.put(entry.getKey(), abs(entry.getValue()));
                 polynomialStr.append(term);
             } else {
-                String term = entry.getValue() + "x^" + entry.getKey() + " + ";
+                String term = " + ";
+                polynomialStr.append(term);
+            }
+
+            if (entry.getValue() == 1 && entry.getKey() == 0) {
+                String term = entry.getValue() + "";
+                polynomialStr.append(term);
+            } else if (entry.getValue() == 1 && entry.getKey() == 1) {
+                String term = "x";
+                polynomialStr.append(term);
+            } else if (entry.getValue() == 1) {
+                String term = "x^" + entry.getKey();
+                polynomialStr.append(term);
+            } else if (entry.getKey() == 1) {
+                String term = entry.getValue() + "x";
+                polynomialStr.append(term);
+            } else if (entry.getKey() == 0) {
+                String term = entry.getValue() + "";
+                polynomialStr.append(term);
+            } else {
+                String term = entry.getValue() + "x^" + entry.getKey();
                 polynomialStr.append(term);
             }
         }
-
-        if (polynomialStr.length() > 3) {
-            polynomialStr.delete(polynomialStr.length() - 3, polynomialStr.length());
+        if (polynomialStr.substring(0, 3).contains("+")) {
+            polynomialStr.delete(0, 2);
         }
+
         return polynomialStr.toString();
     }
 

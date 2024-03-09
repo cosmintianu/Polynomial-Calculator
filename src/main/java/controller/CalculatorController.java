@@ -30,4 +30,11 @@ public class CalculatorController {
         Polynomial result = calculatorModel.add(polynomial1, polynomial2);
         calculatorView.setResult(result);
     }
+
+    public void minusButtonClicked() {
+        Polynomial polynomial1 = calculatorView.getPolynomial1();
+        Polynomial polynomial2 = calculatorView.getPolynomial2();
+        Polynomial result = calculatorModel.subtract(polynomial1, polynomial2);
+        calculatorView.setResult(result);
+    }
 }
