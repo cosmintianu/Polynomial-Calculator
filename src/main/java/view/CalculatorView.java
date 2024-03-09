@@ -41,6 +41,7 @@ public class CalculatorView extends JPanel {
 
         plusBtn.addActionListener(e -> controller.plusButtonClicked());
         minusBtn.addActionListener(e -> controller.minusButtonClicked());
+        mulBtn.addActionListener(e -> controller.mulButtonClicked());
 
 
         panel2.add(plusBtn);
