@@ -1,6 +1,7 @@
 package view;
 
 import controller.CalculatorController;
+import model.Polynomial;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,11 +12,24 @@ public class CalculatorView extends JPanel {
     JPanel panel2 = new JPanel();
     JPanel panel3 = new JPanel();
 
-    public CalculatorView(CalculatorController calculatorController) {
+    JLabel labelPolynomial1 = new JLabel("Polynomial 1");
+    JTextField textField1 = new JTextField();
+    JLabel labelPolynomial2 = new JLabel("Polynomial 2");
+    JTextField textField2 = new JTextField();
+
+    JButton plusBtn = new JButton("+");
+    JButton minusBtn = new JButton("-");
+    JButton mulBtn = new JButton("*");
+    JButton divBtn = new JButton("/");
+
+    JLabel labelParam3 = new JLabel("Result: ");
+    JTextField textField3 = new JTextField();
+
+    public CalculatorView(CalculatorController controller) {
 
         JFrame frame = new JFrame("Polynomial Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500,500);
+        frame.setSize(500, 500);
 
         textField1.setPreferredSize(new Dimension(100, 20));
         textField2.setPreferredSize(new Dimension(100, 20));
@@ -25,18 +39,18 @@ public class CalculatorView extends JPanel {
         panel1.add(labelPolynomial2);
         panel1.add(textField2);
 
-        //to do actions
+        plusBtn.addActionListener(e -> controller.plusButtonClicked());
 
-        panel2.add(buttonPlus);
-        panel2.add(buttonMinus);
-        panel2.add(buttonDiv);
-        panel2.add(buttonMul);
 
-        textFieldParam3.setPreferredSize(new Dimension(100, 20));
+        panel2.add(plusBtn);
+        panel2.add(minusBtn);
+        panel2.add(mulBtn);
+        panel2.add(divBtn);
+
+        textField3.setPreferredSize(new Dimension(100, 20));
 
         panel3.add(labelParam3);
-        panel3.add(textFieldParam3);
-
+        panel3.add(textField3);
 
         JPanel panel = new JPanel();
         panel.add(panel1);
@@ -46,20 +60,15 @@ public class CalculatorView extends JPanel {
         frame.setVisible(true);
     }
 
-    JPanel panel4 = new JPanel();
+    public Polynomial getPolynomial1() {
+        return Polynomial.processPolynomial(textField1.getText());
+    }
 
-    JLabel labelPolynomial1 = new JLabel("Polynomial 1");
-    JTextField textField1 = new JTextField();
-    JLabel labelPolynomial2 = new JLabel("Polynomial 2");
-    JTextField textField2 = new JTextField();
+    public Polynomial getPolynomial2() {
+        return Polynomial.processPolynomial(textField2.getText());
+    }
 
-    JButton buttonPlus = new JButton("+");
-    JButton buttonMinus = new JButton("-");
-    JButton buttonDiv = new JButton("/");
-    JButton buttonMul = new JButton("*");
-
-    JLabel labelParam3 = new JLabel("Result: ");
-    JTextField textFieldParam3 = new JTextField();
-
-    //to do polynomial processing
+    public void setResult(Polynomial result) {
+        textField3.setText(result.polynomialToString());
+    }
 }

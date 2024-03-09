@@ -1,6 +1,5 @@
 package model;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -19,25 +18,36 @@ public class Polynomial {
         terms.put(exponent, coefficient);
     }
 
-    public void printPolynomial() {
+    public String polynomialToString() {
 
         StringBuilder polynomialStr = new StringBuilder();
         for (Map.Entry<Integer, Integer> entry : terms.entrySet()) {
 
-
-            if (entry.getValue() == 1) {
+            if (entry.getValue() == 1 && entry.getKey() == 0) {
+                String term = entry.getValue() + " + ";
+                polynomialStr.append(term);
+            } else if (entry.getValue() == 1 && entry.getKey() == 1) {
+                String term = "x" + " + ";
+                polynomialStr.append(term);
+            } else if (entry.getValue() == 1) {
                 String term = "x^" + entry.getKey() + " + ";
                 polynomialStr.append(term);
             } else if (entry.getKey() == 1) {
                 String term = entry.getValue() + "x" + " + ";
+                polynomialStr.append(term);
+            } else if (entry.getKey() == 0) {
+                String term = entry.getValue() + " + ";
                 polynomialStr.append(term);
             } else {
                 String term = entry.getValue() + "x^" + entry.getKey() + " + ";
                 polynomialStr.append(term);
             }
         }
-        polynomialStr.delete(polynomialStr.length() - 3, polynomialStr.length());
-        System.out.println(polynomialStr);
+
+        if (polynomialStr.length() > 3) {
+            polynomialStr.delete(polynomialStr.length() - 3, polynomialStr.length());
+        }
+        return polynomialStr.toString();
     }
 
     public static Polynomial processPolynomial(String input) {
@@ -51,11 +61,17 @@ public class Polynomial {
             // Skip empty terms
             if (!term.isEmpty()) {
                 String[] parts = term.split("x\\^?");
-                int coefficient = 1;
-                int exponent = 1;
 
-                // Check if the coefficient part is not empty before parsing
-                if (!parts[0].isEmpty()) {
+                int coefficient = 1;
+                int exponent;
+                if (term.contains("x")) {
+                    exponent = 1;
+                } else {
+                    exponent = 0;
+                }
+
+                // Check if the coefficient part exists and is not empty before parsing
+                if (parts.length > 0 && !parts[0].isEmpty()) {
                     coefficient = Integer.parseInt(parts[0].trim());
                 }
 
@@ -67,8 +83,6 @@ public class Polynomial {
                 polynomial.addTerm(exponent, coefficient);
             }
         }
-
         return polynomial;
     }
-
 }
