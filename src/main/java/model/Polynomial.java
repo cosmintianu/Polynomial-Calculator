@@ -1,30 +1,42 @@
 package model;
 
-import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
 
 import static java.lang.Math.abs;
 
 public class Polynomial {
-    private Map<Integer, Integer> terms;
+    private Map<Integer, Double> terms;
 
-    public Map<Integer, Integer> getTerms() {
+    public Map<Integer, Double> getTerms() {
         return terms;
     }
 
     public Polynomial() {
         this.terms = new TreeMap<>((o1, o2) -> Integer.compare(o2, o1));
     }
+    
+    public Map.Entry<Integer, Double> getMaxDegreeEntry(){
 
-    public void addTerm(int exponent, int coefficient) {
+        Map.Entry<Integer, Double> maxDegEntry = null;
+        for (Map.Entry<Integer, Double> entry : terms.entrySet()){
+            if(entry.getValue()!=0){
+                maxDegEntry = entry;
+                break;
+            }
+
+        }
+        return maxDegEntry;
+    }
+
+    public void addTerm(int exponent, double coefficient) {
         terms.put(exponent, coefficient);
     }
 
     public String polynomialToString() {
 
         StringBuilder polynomialStr = new StringBuilder();
-        for (Map.Entry<Integer, Integer> entry : terms.entrySet()) {
+        for (Map.Entry<Integer, Double> entry : terms.entrySet()) {
 
             if (entry.getValue() < 0) {
                 String term = " - ";
@@ -61,7 +73,7 @@ public class Polynomial {
                 polynomialStr.append(term);
             }
         }
-        if (polynomialStr.substring(0, 3).contains("+") && polynomialStr.length()>=3) {
+        if (polynomialStr.length()>=3 && polynomialStr.substring(0, 3).contains("+")) {
             polynomialStr.delete(0, 3);
         }
 
@@ -71,6 +83,7 @@ public class Polynomial {
     private static void extractCoefAndExpFromTermsMinus(Polynomial polynomial, String term) {
         String[] termsMinus = term.split("\\s*[-]\\s*");
 
+        int i=1;
         for (String termMinus : termsMinus) {
             if (!termMinus.isEmpty()) {
                 //System.out.println(" for :|" + termMinus + "|");
@@ -88,7 +101,13 @@ public class Polynomial {
                 // Check if the coefficient part exists and is not empty before parsing
                 if (partsMinus.length > 0 && !partsMinus[0].isEmpty()) {
                     //System.out.println("Part 0 " + partsMinus[0]);
-                    coefficientMinus = -Integer.parseInt(partsMinus[0].trim());
+                    if(i != 1){
+                        coefficientMinus = -Integer.parseInt(partsMinus[0].trim());
+                    }
+                    else{
+                        coefficientMinus = Integer.parseInt(partsMinus[0].trim());
+                    }
+
 
 
                 }
@@ -100,7 +119,7 @@ public class Polynomial {
                 polynomial.addTerm(exponentMinus, coefficientMinus);
 
             }
-
+            i++;
         }
         //System.out.println(polynomial.getTerms());
     }

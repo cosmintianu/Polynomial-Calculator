@@ -21,6 +21,9 @@ public class CalculatorView extends JPanel {
     JButton minusBtn = new JButton("-");
     JButton mulBtn = new JButton("*");
     JButton divBtn = new JButton("/");
+    JButton derivativeBtn = new JButton('\u2202' + "/" + '\u2202' + "x");
+    JButton integrateBtn = new JButton("∫");
+
 
     JLabel labelParam3 = new JLabel("Result: ");
     JTextField textField3 = new JTextField();
@@ -42,14 +45,18 @@ public class CalculatorView extends JPanel {
         plusBtn.addActionListener(e -> controller.plusButtonClicked());
         minusBtn.addActionListener(e -> controller.minusButtonClicked());
         mulBtn.addActionListener(e -> controller.mulButtonClicked());
+        divBtn.addActionListener(e -> controller.divButtonClicked());
+        derivativeBtn.addActionListener(e -> controller.derivateButtonClicked());
 
 
         panel2.add(plusBtn);
         panel2.add(minusBtn);
         panel2.add(mulBtn);
         panel2.add(divBtn);
+        panel2.add(integrateBtn);
+        panel2.add(derivativeBtn);
 
-        textField3.setPreferredSize(new Dimension(100, 20));
+        textField3.setPreferredSize(new Dimension(200, 20));
 
         panel3.add(labelParam3);
         panel3.add(textField3);
@@ -72,5 +79,9 @@ public class CalculatorView extends JPanel {
 
     public void setResult(Polynomial result) {
         textField3.setText(result.polynomialToString());
+    }
+
+    public void setResult(Polynomial[] result){
+        textField3.setText(result[0].polynomialToString() + " ; remainder : " + result[1].polynomialToString());
     }
 }

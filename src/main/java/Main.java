@@ -14,10 +14,5 @@ public class Main {
         calculatorController.setCalculatorModel(calculatorModel);
         calculatorController.setCalculatorView(calculatorView);
 
-        StringBuilder str = new StringBuilder("abcd");
-        if(str.substring(0,3).contains("c")){
-            str.delete(0,3);
-        }
-        System.out.println(str);
     }
 }

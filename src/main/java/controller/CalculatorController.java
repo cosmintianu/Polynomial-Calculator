@@ -47,4 +47,18 @@ public class CalculatorController {
         System.out.println(result.getTerms());
         calculatorView.setResult(result);
     }
+    public void divButtonClicked() {
+        Polynomial polynomial1 = calculatorView.getPolynomial1();
+        Polynomial polynomial2 = calculatorView.getPolynomial2();
+        Polynomial[] result = calculatorModel.division(polynomial1, polynomial2);
+        calculatorView.setResult(result);
+    }
+
+    public void derivateButtonClicked(){
+        Polynomial polynomial1 = calculatorView.getPolynomial1();
+        Polynomial result = calculatorModel.derivate(polynomial1);
+        calculatorView.setResult(result);
+
+    }
+
 }
