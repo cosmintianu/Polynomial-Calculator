@@ -15,12 +15,12 @@ public class Polynomial {
     public Polynomial() {
         this.terms = new TreeMap<>((o1, o2) -> Integer.compare(o2, o1));
     }
-    
-    public Map.Entry<Integer, Double> getMaxDegreeEntry(){
 
-        Map.Entry<Integer, Double> maxDegEntry = null;
-        for (Map.Entry<Integer, Double> entry : terms.entrySet()){
-            if(entry.getValue()!=0){
+    public Map.Entry<Integer, Double> getMaxDegreeEntry() {
+
+        Map.Entry<Integer, Double> maxDegEntry = Map.entry(0,0D);
+        for (Map.Entry<Integer, Double> entry : terms.entrySet()) {
+            if (!entry.getValue().equals(0D)) {
                 maxDegEntry = entry;
                 break;
             }
@@ -34,11 +34,11 @@ public class Polynomial {
     }
 
     public String polynomialToString() {
-
+        int i=1;
         StringBuilder polynomialStr = new StringBuilder();
         for (Map.Entry<Integer, Double> entry : terms.entrySet()) {
 
-            if (entry.getValue() < 0) {
+            if (entry.getValue() < 0D) {
                 String term = " - ";
                 terms.put(entry.getKey(), abs(entry.getValue()));
                 polynomialStr.append(term);
@@ -47,19 +47,24 @@ public class Polynomial {
                 polynomialStr.append(term);
             }
 
-            if (entry.getValue() == 1 && entry.getKey() == 0) {
+            if (entry.getValue() == 1D && entry.getKey() == 0) {
                 String term = entry.getValue() + "";
                 polynomialStr.append(term);
-            } else if (entry.getValue() == 1 && entry.getKey() == 1) {
+            } else if (entry.getValue() == 1D && entry.getKey() == 1) {
                 String term = "x";
                 polynomialStr.append(term);
-            } else if (entry.getValue() == 0 && entry.getKey()==0) {
-                String term = "0";
-                polynomialStr.append(term);
-            }else if (entry.getValue() == 0) {
+//            } else if (entry.getValue().equals(0D) && entry.getKey() == 0) {
+//                String term = "0";
+//                polynomialStr.append(term);
+            } else if (entry.getValue() == 0D) {
                 if (polynomialStr.length() >= 3) {
-                    polynomialStr.delete(polynomialStr.length()-3, polynomialStr.length());                }
-            } else if (entry.getValue() == 1) {
+                    polynomialStr.delete(polynomialStr.length() - 3, polynomialStr.length());
+                }
+                if (i == 1){
+                    String term = "0";
+                    polynomialStr.append(term);
+                }
+            } else if (entry.getValue() == 1D) {
                 String term = "x^" + entry.getKey();
                 polynomialStr.append(term);
             } else if (entry.getKey() == 1) {
@@ -72,8 +77,9 @@ public class Polynomial {
                 String term = entry.getValue() + "x^" + entry.getKey();
                 polynomialStr.append(term);
             }
+            i++;
         }
-        if (polynomialStr.length()>=3 && polynomialStr.substring(0, 3).contains("+")) {
+        if (polynomialStr.length() >= 3 && polynomialStr.substring(0, 3).contains("+")) {
             polynomialStr.delete(0, 3);
         }
 
@@ -83,7 +89,7 @@ public class Polynomial {
     private static void extractCoefAndExpFromTermsMinus(Polynomial polynomial, String term) {
         String[] termsMinus = term.split("\\s*[-]\\s*");
 
-        int i=1;
+        int i = 1;
         for (String termMinus : termsMinus) {
             if (!termMinus.isEmpty()) {
                 //System.out.println(" for :|" + termMinus + "|");
@@ -101,13 +107,11 @@ public class Polynomial {
                 // Check if the coefficient part exists and is not empty before parsing
                 if (partsMinus.length > 0 && !partsMinus[0].isEmpty()) {
                     //System.out.println("Part 0 " + partsMinus[0]);
-                    if(i != 1){
+                    if (i != 1) {
                         coefficientMinus = -Integer.parseInt(partsMinus[0].trim());
-                    }
-                    else{
+                    } else {
                         coefficientMinus = Integer.parseInt(partsMinus[0].trim());
                     }
-
 
 
                 }

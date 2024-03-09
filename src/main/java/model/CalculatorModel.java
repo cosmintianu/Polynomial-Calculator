@@ -96,7 +96,23 @@ public class CalculatorModel {
         for (Map.Entry<Integer, Double> entry : polynomial1.getTerms().entrySet()) {
             int exponent = entry.getKey();
             double coefficient = entry.getValue();
-            result.addTerm(exponent - 1, coefficient * exponent);
+            if (exponent == 0 && coefficient == 1) {
+                result.addTerm(1, 0);
+            } else {
+                result.addTerm(exponent - 1, coefficient * exponent);
+            }
+        }
+
+        return result;
+    }
+
+    public Polynomial integrate(Polynomial polynomial1) {
+        Polynomial result = new Polynomial();
+
+        for (Map.Entry<Integer, Double> entry : polynomial1.getTerms().entrySet()) {
+            int exponent = entry.getKey();
+            double coefficient = entry.getValue();
+            result.addTerm(exponent + 1, coefficient * (1.0 / (exponent + 1)));
         }
 
         return result;

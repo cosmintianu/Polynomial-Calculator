@@ -46,15 +46,16 @@ public class CalculatorView extends JPanel {
         minusBtn.addActionListener(e -> controller.minusButtonClicked());
         mulBtn.addActionListener(e -> controller.mulButtonClicked());
         divBtn.addActionListener(e -> controller.divButtonClicked());
-        derivativeBtn.addActionListener(e -> controller.derivateButtonClicked());
+        derivativeBtn.addActionListener(e -> controller.derivativeButtonClicked());
+        integrateBtn.addActionListener(e -> controller.integrateButtonClicked());
 
 
         panel2.add(plusBtn);
         panel2.add(minusBtn);
         panel2.add(mulBtn);
         panel2.add(divBtn);
-        panel2.add(integrateBtn);
         panel2.add(derivativeBtn);
+        panel2.add(integrateBtn);
 
         textField3.setPreferredSize(new Dimension(200, 20));
 
