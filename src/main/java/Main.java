@@ -11,6 +11,7 @@ public class Main {
         Polynomial polynomial = new Polynomial();
         polynomial.addTerm(3,1);
         polynomial.addTerm(2,2);
+        polynomial.addTerm(1,7);
         System.out.println(polynomial.getTerms());
         polynomial.printPolynomial();
     }
