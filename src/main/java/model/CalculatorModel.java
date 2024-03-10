@@ -90,7 +90,7 @@ public class CalculatorModel {
         return result;
     }
 
-    public Polynomial derivate(Polynomial polynomial1) {
+    public Polynomial derivative(Polynomial polynomial1) {
         Polynomial result = new Polynomial();
 
         for (Map.Entry<Integer, Double> entry : polynomial1.getTerms().entrySet()) {

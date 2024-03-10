@@ -28,7 +28,6 @@ public class CalculatorController {
         Polynomial polynomial1 = calculatorView.getPolynomial1();
         Polynomial polynomial2 = calculatorView.getPolynomial2();
         Polynomial result = calculatorModel.add(polynomial1, polynomial2);
-        System.out.println(result.getTerms());
         calculatorView.setResult(result);
     }
 
@@ -36,7 +35,6 @@ public class CalculatorController {
         Polynomial polynomial1 = calculatorView.getPolynomial1();
         Polynomial polynomial2 = calculatorView.getPolynomial2();
         Polynomial result = calculatorModel.subtract(polynomial1, polynomial2);
-        System.out.println(result.getTerms());
         calculatorView.setResult(result);
     }
 
@@ -44,7 +42,6 @@ public class CalculatorController {
         Polynomial polynomial1 = calculatorView.getPolynomial1();
         Polynomial polynomial2 = calculatorView.getPolynomial2();
         Polynomial result = calculatorModel.multiply(polynomial1, polynomial2);
-        System.out.println(result.getTerms());
         calculatorView.setResult(result);
     }
     public void divButtonClicked() {
@@ -56,18 +53,14 @@ public class CalculatorController {
 
     public void derivativeButtonClicked(){
         Polynomial polynomial1 = calculatorView.getPolynomial1();
-        Polynomial result = calculatorModel.derivate(polynomial1);
-        System.out.println(result.getTerms());
+        Polynomial result = calculatorModel.derivative(polynomial1);
         calculatorView.setResult(result);
-
     }
 
     public void integrateButtonClicked(){
         Polynomial polynomial1 = calculatorView.getPolynomial1();
         Polynomial result = calculatorModel.integrate(polynomial1);
-        System.out.println(result.getTerms());
         calculatorView.setResult(result);
-
     }
 
 }

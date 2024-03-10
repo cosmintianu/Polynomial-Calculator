@@ -1,9 +1,6 @@
 import controller.CalculatorController;
 import model.CalculatorModel;
-import model.Polynomial;
 import view.CalculatorView;
-
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {

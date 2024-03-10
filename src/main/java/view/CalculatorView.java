@@ -21,7 +21,7 @@ public class CalculatorView extends JPanel {
     JButton minusBtn = new JButton("-");
     JButton mulBtn = new JButton("*");
     JButton divBtn = new JButton("/");
-    JButton derivativeBtn = new JButton('\u2202' + "/" + '\u2202' + "x");
+    JButton derivativeBtn = new JButton('∂' + "/" + '∂' + "x");
     JButton integrateBtn = new JButton("∫");
 
 
