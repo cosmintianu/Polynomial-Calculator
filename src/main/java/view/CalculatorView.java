@@ -85,4 +85,9 @@ public class CalculatorView extends JPanel {
     public void setResult(Polynomial[] result){
         textField3.setText(result[0].polynomialToString() + " ; remainder : " + result[1].polynomialToString());
     }
+
+    public void setResultZero(){
+        textField3.setText("Undefined");
+    }
+
 }

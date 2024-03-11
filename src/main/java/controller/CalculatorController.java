@@ -44,20 +44,26 @@ public class CalculatorController {
         Polynomial result = calculatorModel.multiply(polynomial1, polynomial2);
         calculatorView.setResult(result);
     }
+
     public void divButtonClicked() {
         Polynomial polynomial1 = calculatorView.getPolynomial1();
         Polynomial polynomial2 = calculatorView.getPolynomial2();
-        Polynomial[] result = calculatorModel.division(polynomial1, polynomial2);
-        calculatorView.setResult(result);
+
+        if (polynomial2.getMaxDegreeEntry().getValue().equals(0D) && polynomial2.getMaxDegreeEntry().getKey() == 0) {
+            calculatorView.setResultZero();
+        } else {
+            Polynomial[] result = calculatorModel.division(polynomial1, polynomial2);
+            calculatorView.setResult(result);
+        }
     }
 
-    public void derivativeButtonClicked(){
+    public void derivativeButtonClicked() {
         Polynomial polynomial1 = calculatorView.getPolynomial1();
         Polynomial result = calculatorModel.derivative(polynomial1);
         calculatorView.setResult(result);
     }
 
-    public void integrateButtonClicked(){
+    public void integrateButtonClicked() {
         Polynomial polynomial1 = calculatorView.getPolynomial1();
         Polynomial result = calculatorModel.integrate(polynomial1);
         calculatorView.setResult(result);
