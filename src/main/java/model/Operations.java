@@ -59,6 +59,10 @@ public class Operations {
     }
 
     public Polynomial[] division(Polynomial dividend, Polynomial divisor) {
+        if(divisor.getMaxDegreeEntry().getValue().equals(0D) && divisor.getMaxDegreeEntry().getKey() == 0){
+            return null;
+        }
+
         Polynomial quotient = new Polynomial();
         Polynomial remainder = dividend;
 

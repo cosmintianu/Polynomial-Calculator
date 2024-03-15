@@ -1,5 +1,6 @@
 import controller.CalculatorController;
 import model.Operations;
+import model.Polynomial;
 import view.CalculatorView;
 
 public class Main {

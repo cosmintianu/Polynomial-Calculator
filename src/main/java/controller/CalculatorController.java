@@ -48,11 +48,10 @@ public class CalculatorController {
     public void divButtonClicked() {
         Polynomial polynomial1 = calculatorView.getPolynomial1();
         Polynomial polynomial2 = calculatorView.getPolynomial2();
-
-        if (polynomial2.getMaxDegreeEntry().getValue().equals(0D) && polynomial2.getMaxDegreeEntry().getKey() == 0) {
-            calculatorView.setResultZero();
+        Polynomial[] result = operations.division(polynomial1, polynomial2);
+        if (result == null) {
+            calculatorView.setResultUndefined();
         } else {
-            Polynomial[] result = operations.division(polynomial1, polynomial2);
             calculatorView.setResult(result);
         }
     }

@@ -16,6 +16,17 @@ public class Polynomial {
         this.terms = new TreeMap<>((o1, o2) -> Integer.compare(o2, o1));
     }
 
+    public Polynomial(double... exponentsAndCoefficients) {
+        this.terms = new TreeMap<>((o1, o2) -> Integer.compare(o2, o1));
+
+        for (int i = 0; i < exponentsAndCoefficients.length; i += 2) {
+            int exponent = (int) exponentsAndCoefficients[i];
+            double coefficient = exponentsAndCoefficients[i + 1];
+
+            addTerm(exponent, coefficient);
+        }
+    }
+
     public Map.Entry<Integer, Double> getMaxDegreeEntry() {
 
         Map.Entry<Integer, Double> maxDegEntry = Map.entry(0, 0D);
@@ -32,10 +43,15 @@ public class Polynomial {
         terms.put(exponent, coefficient);
     }
 
+    public boolean checkIfPolynomialsAreEqual(Polynomial polynomial1, Polynomial polynomial2){
+
+        return false;
+    }
+
     public String polynomialToString() {
 
         int i = 1;  //i is used not for iteration but for checking in case a term is 0 and
-                    //it is the only one to add it to the string that will be displayed
+        //it is the only one to add it to the string that will be displayed
         StringBuilder polynomialStr = new StringBuilder();
 
         for (Map.Entry<Integer, Double> entry : terms.entrySet()) {
@@ -94,7 +110,7 @@ public class Polynomial {
             if (!termMinus.isEmpty()) {
 
                 String[] partsMinus = termMinus.split("x\\^?");
-                int coefficientMinus = 1;
+                double coefficientMinus = 1;
                 int exponentMinus;
                 if (termMinus.contains("x")) {
                     exponentMinus = 1;
@@ -106,9 +122,9 @@ public class Polynomial {
                 if (partsMinus.length > 0 && !partsMinus[0].isEmpty()) {
                     //System.out.println("Part 0 " + partsMinus[0]);
                     if (i != 1) {
-                        coefficientMinus = -Integer.parseInt(partsMinus[0].trim());
+                        coefficientMinus = -Double.parseDouble(partsMinus[0].trim());
                     } else {
-                        coefficientMinus = Integer.parseInt(partsMinus[0].trim());
+                        coefficientMinus = Double.parseDouble(partsMinus[0].trim());
                     }
 
 
@@ -128,7 +144,7 @@ public class Polynomial {
 
     private static void extractCoefAndExpFromTerms(Polynomial polynomial, String term) {
         String[] parts = term.split("x\\^?");
-        int coefficient = 1;
+        double coefficient = 1;
         int exponent;
         if (term.contains("x")) {
             exponent = 1;
@@ -138,7 +154,7 @@ public class Polynomial {
 
         // Check if the coefficient part exists and is not empty before parsing
         if (parts.length > 0 && !parts[0].isEmpty()) {
-            coefficient = Integer.parseInt(parts[0].trim());
+            coefficient = Double.parseDouble(parts[0].trim());
         }
 
         // Check if the exponent part exists and is not empty before parsing
