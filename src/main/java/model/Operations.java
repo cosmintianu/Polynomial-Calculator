@@ -2,7 +2,7 @@ package model;
 
 import java.util.Map;
 
-public class CalculatorModel {
+public class Operations {
     public Polynomial add(Polynomial polynomial1, Polynomial polynomial2) {
         Polynomial result = new Polynomial();
 

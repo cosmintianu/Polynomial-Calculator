@@ -1,14 +1,14 @@
 import controller.CalculatorController;
-import model.CalculatorModel;
+import model.Operations;
 import view.CalculatorView;
 
 public class Main {
     public static void main(String[] args) {
-        CalculatorModel calculatorModel = new CalculatorModel();
+        Operations operations = new Operations();
         CalculatorController calculatorController = new CalculatorController();
         CalculatorView calculatorView = new CalculatorView(calculatorController);
 
-        calculatorController.setCalculatorModel(calculatorModel);
+        calculatorController.setCalculatorModel(operations);
         calculatorController.setCalculatorView(calculatorView);
 
     }

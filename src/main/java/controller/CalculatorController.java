@@ -1,23 +1,23 @@
 package controller;
 
-import model.CalculatorModel;
+import model.Operations;
 import model.Polynomial;
 import view.CalculatorView;
 
 public class CalculatorController {
-    CalculatorModel calculatorModel;
+    Operations operations;
     CalculatorView calculatorView;
 
-    public CalculatorModel getCalculatorModel() {
-        return calculatorModel;
+    public Operations getCalculatorModel() {
+        return operations;
     }
 
     public CalculatorView getCalculatorView() {
         return calculatorView;
     }
 
-    public void setCalculatorModel(CalculatorModel calculatorModel) {
-        this.calculatorModel = calculatorModel;
+    public void setCalculatorModel(Operations operations) {
+        this.operations = operations;
     }
 
     public void setCalculatorView(CalculatorView calculatorView) {
@@ -27,21 +27,21 @@ public class CalculatorController {
     public void plusButtonClicked() {
         Polynomial polynomial1 = calculatorView.getPolynomial1();
         Polynomial polynomial2 = calculatorView.getPolynomial2();
-        Polynomial result = calculatorModel.add(polynomial1, polynomial2);
+        Polynomial result = operations.add(polynomial1, polynomial2);
         calculatorView.setResult(result);
     }
 
     public void minusButtonClicked() {
         Polynomial polynomial1 = calculatorView.getPolynomial1();
         Polynomial polynomial2 = calculatorView.getPolynomial2();
-        Polynomial result = calculatorModel.subtract(polynomial1, polynomial2);
+        Polynomial result = operations.subtract(polynomial1, polynomial2);
         calculatorView.setResult(result);
     }
 
     public void mulButtonClicked() {
         Polynomial polynomial1 = calculatorView.getPolynomial1();
         Polynomial polynomial2 = calculatorView.getPolynomial2();
-        Polynomial result = calculatorModel.multiply(polynomial1, polynomial2);
+        Polynomial result = operations.multiply(polynomial1, polynomial2);
         calculatorView.setResult(result);
     }
 
@@ -52,20 +52,20 @@ public class CalculatorController {
         if (polynomial2.getMaxDegreeEntry().getValue().equals(0D) && polynomial2.getMaxDegreeEntry().getKey() == 0) {
             calculatorView.setResultZero();
         } else {
-            Polynomial[] result = calculatorModel.division(polynomial1, polynomial2);
+            Polynomial[] result = operations.division(polynomial1, polynomial2);
             calculatorView.setResult(result);
         }
     }
 
     public void derivativeButtonClicked() {
         Polynomial polynomial1 = calculatorView.getPolynomial1();
-        Polynomial result = calculatorModel.derivative(polynomial1);
+        Polynomial result = operations.derivative(polynomial1);
         calculatorView.setResult(result);
     }
 
     public void integrateButtonClicked() {
         Polynomial polynomial1 = calculatorView.getPolynomial1();
-        Polynomial result = calculatorModel.integrate(polynomial1);
+        Polynomial result = operations.integrate(polynomial1);
         calculatorView.setResult(result);
     }
 
