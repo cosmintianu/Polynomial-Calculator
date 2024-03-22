@@ -43,11 +43,6 @@ public class Polynomial {
         terms.put(exponent, coefficient);
     }
 
-    public boolean checkIfPolynomialsAreEqual(Polynomial polynomial1, Polynomial polynomial2){
-
-        return false;
-    }
-
     public String polynomialToString() {
 
         int i = 1;  //i is used not for iteration but for checking in case a term is 0 and
